@@ -38,8 +38,6 @@ class Client
 
     /**
      * Client constructor.
-     * @param string $version
-     * @param string $apiKey
      */
     public function __construct($version = '2.0', $apiKey)
     {
