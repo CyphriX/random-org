@@ -70,37 +70,7 @@ class Client
             $params,
             $this->getRandomID()
         );
-        $postData = $request->toJson();
-        $response = $this->post($postData);
-        if ($this->responseHasErrors($response)) {
-            throw new RandomOrgException($response->error->message);
-        }
-        return $response->result->random->data[0];
-    }
-
-    /**
-     * Generate a v4 UUID.
-     * @return string
-     * @throws RandomOrgException
-     */
-    public function getUUID()
-    {
-        $params = [
-            'apiKey' => $this->getApiKey(),
-            'n' => 1
-        ];
-        $request = new Request(
-            $this->version,
-            'generateUUIDs',
-            $params,
-            $this->getRandomID()
-        );
-        $postData = $request->toJson();
-        $response = $this->post($postData);
-        if ($this->responseHasErrors($response)) {
-            throw new RandomOrgException($response->error->message);
-        }
-        return $response->result->random->data[0];
+        return $this->processSingleObjectRequest($request);
     }
 
     /**
@@ -119,6 +89,22 @@ class Client
     protected function getRandomID()
     {
         return rand(1, 99999);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     * @throws RandomOrgException
+     */
+    protected function processSingleObjectRequest(Request $request)
+    {
+        $postData = $request->toJson();
+        /** @var \stdClass $response */
+        $response = $this->post($postData);
+        if ($this->responseHasErrors($response)) {
+            throw new RandomOrgException($response->error->message);
+        }
+        return $response->result->random->data[0];
     }
 
     /**
@@ -166,6 +152,25 @@ class Client
         return array_key_exists('error', $response);
     }
 
+    /**
+     * Generate a v4 UUID.
+     * @return string
+     * @throws RandomOrgException
+     */
+    public function getUUID()
+    {
+        $params = [
+            'apiKey' => $this->getApiKey(),
+            'n' => 1
+        ];
+        $request = new Request(
+            $this->version,
+            'generateUUIDs',
+            $params,
+            $this->getRandomID()
+        );
+        return $this->processSingleObjectRequest($request);
+    }
 }
 
 
