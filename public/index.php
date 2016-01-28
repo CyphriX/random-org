@@ -20,5 +20,3 @@ try {
 } catch(\RandomOrg\RandomOrgException $e) {
     echo $e->getMessage();
 }
-
-?>
