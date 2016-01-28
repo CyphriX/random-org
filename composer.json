@@ -6,7 +6,9 @@
   "authors": [
     {
       "name": "Jason Swint",
-      "email": "jason@adventuresinphp.com"
+      "email": "jason@adventuresinphp.com",
+      "homepage": "http://adventuresinphp.com",
+      "role": "Developer"
     }
   ],
   "autoload": {
