@@ -14,7 +14,7 @@
       "RandomOrg\\": "src/"
     }
   },
-  "require": {
-    "vlucas/phpdotenv": "^2.2"
+  "suggest": {
+    "vlucas/phpdotenv": "Required to run the included example file (^2.2)"
   }
 }
