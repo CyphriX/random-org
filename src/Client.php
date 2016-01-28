@@ -93,11 +93,6 @@ class Client
         return rand(1, 99999);
     }
 
-    /**
-     * @param Request $request
-     * @return string
-     * @throws RandomOrgException
-     */
     protected function processSingleObjectRequest(Request $request)
     {
         $postData = $request->toJson();
